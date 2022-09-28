@@ -110,7 +110,14 @@ void Game::CheckCollision()
 	}
 
 	// TODO #6 - If no bricks remain, pause ball and display victory text with R to reset
-
+	if (bricks.size() == 0){
+		ball.moving = false;
+		Console::CursorVisible(true);
+		char victory[33] = "YOU WIN!!! PRESS \'R\' TO RESET...";
+		Console::SetCursorPosition(((WINDOW_WIDTH / 2) - 17),WINDOW_HEIGHT / 2);
+		Console::ForegroundColor(Green);
+		std::cout << victory;
+	}
 
 	if (paddle.Contains(ball.x_position + ball.x_velocity, ball.y_velocity + ball.y_position))
 	{
@@ -118,4 +125,14 @@ void Game::CheckCollision()
 	}
 
 	// TODO #7 - If ball touches bottom of window, pause ball and display defeat text with R to reset
+	if (ball.y_position >= 35){
+		ball.moving = false;
+		Console::CursorVisible(true);
+		char loss[34] = "YOU LOSE!!! PRESS \'R\' TO RESET...";
+		Console::SetCursorPosition(((WINDOW_WIDTH / 2) - 17), WINDOW_HEIGHT / 2);
+		Console::ResetColor();
+		std::cout << loss;
+	}
+	
+
 }

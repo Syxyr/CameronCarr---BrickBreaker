@@ -18,6 +18,7 @@ void Game::Reset()
 	ball.visage = 'O';
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
+	bricks.clear();
 
 	// TODO #2 - Add this brick and 4 more bricks to the vector
 	for (int i = 0; i < 5; ++i) {
@@ -94,7 +95,9 @@ void Game::CheckCollision()
 			ball.y_velocity *= -1;
 
 			// TODO #5 - If the ball hits the same brick 3 times (color == black), remove it from the vector
-
+			if (bricks[ndx].color == Black) {
+				bricks.erase(bricks.begin() + ndx);
+			}
 		}
 
 	}

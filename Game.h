@@ -13,6 +13,9 @@ class Game
 	Box brick;
 	std::vector<Box> bricks;
 
+	char loss[34] = "YOU LOSE!!! PRESS \'R\' TO RESET...";
+	char victory[33] = "YOU WIN!!! PRESS \'R\' TO RESET...";
+
 public:
 	Game();
 	bool Update();

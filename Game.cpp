@@ -21,16 +21,22 @@ void Game::Reset()
 	ball.color = ConsoleColor::Cyan;
 	ResetBall();
 	bricks.clear();
+	int brickCount = 5;
 
 	// TODO #2 - Add this brick and 4 more bricks to the vector
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < brickCount; ++i) {
 		brick.width = 10;
 		brick.height = 2;
 		brick.x_position = ((WINDOW_WIDTH * i) / 5) + (brick.width / 5);
+		if (i % 5 == 0) {
+			brick.y_position = i + i/2;
+		}
 		if (brick.x_position <= 0) {
 			brick.x_position = 0;
 		}
-		brick.y_position = 5;
+		if (brick.x_position >= Console::WindowWidth()) {
+			brick.x_position = bricks[i - 5].x_position;
+		}
 		brick.doubleThick = true;
 		brick.color = ConsoleColor::DarkGreen;
 		brick.collisionCount = 0;
